@@ -5,7 +5,8 @@ MAINTAINER michimau <mauro.michielon@eea.europa.eu>
 RUN apt-get clean && apt-get update && apt-get install -y \
          cgi-mapserver \
          mapserver-bin \
-         apache2
+         apache2 \
+         python
 
 COPY cgi-bin.tar.gz .
 RUN tar -zxvf cgi-bin.tar.gz -C /usr/lib/
