@@ -16,4 +16,4 @@ Now the application is running on port 5000 on the host and the files are stored
 
 Visit the `http://localhost:<port_host>` to see the application running.
 
-current <<port_host>> = 50001
+current port_host = 50001
