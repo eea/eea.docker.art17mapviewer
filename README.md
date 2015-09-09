@@ -10,7 +10,7 @@ Host prerequisites: [Docker](https://docs.docker.com/installation/)
 
 Run the application:
 
-`docker run -d -p <port_host>:80 -v /media/art17mapviewer_data/art17mapviewer:/var/local --name art17mapviewer eeacms/eea.docker.art17mapviewer`
+`docker run  --restart=always -d -p <port_host>:80 -v /media/art17mapviewer_data/art17mapviewer:/var/local --name art17mapviewer eeacms/eea.docker.art17mapviewer`
 
 Now the application is running on port 50001 on the host and the files are stored on the host at `/media/art17mapviewer_data/art17mapviewer`.
 
