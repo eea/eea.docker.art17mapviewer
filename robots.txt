@@ -1,3 +1,0 @@
-# This is an administration site - no indexing thank you
-User-agent: *
-Disallow: /
