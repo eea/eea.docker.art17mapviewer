@@ -1,0 +1,299 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+  <title>Art. 17 mapserver</title>
+<script type="text/javascript">
+// <![CDATA[
+function displayit(formname, method) {
+    var imgurl = "/cgi-bin/" + method + "?SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&FORMAT=PNG";
+    var x = formname;
+
+    for (i = 0; i < x.length; i++) {
+        e = x.elements[i]
+        if (e.nodeName != "INPUT") {
+            continue;
+        }
+        if (e.type == "button") {
+            continue;
+        }
+        if ((e.type == "radio" || e.type == "checkbox") && e.checked == false) {
+            continue;
+        }
+        imgurl = imgurl + "&" + x.elements[i].name + "=" + x.elements[i].value;
+    }
+//document.write( imgurl);
+    mapimg.src = imgurl;
+    mapurl.innerHTML = imgurl;
+}
+// ]]>
+</script>
+<style type="text/css">
+</style>
+</head>
+<body style="background-color: #fff">
+<div id="globalnav">
+ <h1>Art. 17 mapserver</h1>
+</div>
+<div id="workarea">
+<div style="position:fixed; top: 10px; right: 10px; width:542px; min-height:420px; padding:10px;
+	background-color:#f0f0f0; border: 1px solid black">
+  <img id="mapimg" src="europeplacefiller.png" style="background-color:#00f0f0; border: 1px solid black" />
+  <div id="mapurl" style="overflow:scroll; width:540px">MAP URL</div>
+</div>
+
+<h2>art17ws.py</h2>
+<form action="/cgi-bin/art17ws.py" method="get">
+  <input type="hidden" name="SRS" value="EPSG:3035"/>
+  <input type="hidden" name="EXCEPTIONS" value="application/vnd.ogc.se_xml"/>
+  <input type="hidden" name="EXCEPTIONS" value="INIMAGE"/>
+  <input type="hidden" name="STYLES" value=""/>
+  <input type="hidden" name="TRANSPARENT" value="TRUE"/>
+  <input type="hidden" name="LAYERS" value="Europe_BIOGEO_MERGE30Jan"/>
+  <input type="hidden" name="HEIGHT" value="399"/>
+  <input type="hidden" name="WIDTH" value="529"/>
+  <input type="hidden" name="BBOX" value="1555410.88968147,1283788.62339,6889766.52311053,5307244.006638"/>
+  <fieldset><legend>Region (rg)</legend>
+    <label><input type="radio" name="rg" checked="checked" value="'ALP|ATL|BOR|CON|MED|PAN'"/>'ALP|ATL|BOR|CON|MED|PAN'</label>
+    <label><input type="radio" name="rg" value="'ALP'"/>'ALP'</label>
+  </fieldset>
+  <fieldset><legend>l</legend>
+    <label><input type="checkbox" name="l" checked="checked" value="DECON|9CB34D"/>DECON|9CB34D</label>
+    <label><input type="checkbox" name="l" value="FRCON|008000"/>FRCON|008000</label>
+    <label><input type="checkbox" name="l" value="FRATL|00A000"/>FRATL|00A000</label>
+    <label><input type="checkbox" name="l" value="FRMED|00B000"/>FRMED|00B000</label>
+  </fieldset>
+  <div>
+    <input type="button" value="Display" onclick="displayit(this.form,'art17ws.py')"/>
+  </div>
+</form>
+
+
+<h2>art17wsCountries</h2>
+<form action="/cgi-bin/art17wsCountries" method="get">
+  <input type="hidden" name="SRS" value="EPSG:3035"/>
+  <input type="hidden" name="EXCEPTIONS" value="application/vnd.ogc.se_xml"/>
+  <input type="hidden" name="EXCEPTIONS" value="INIMAGE"/>
+  <input type="hidden" name="HEIGHT" value="399"/>
+  <input type="hidden" name="WIDTH" value="529"/>
+  <input type="hidden" name="BBOX" value="1555410.88968147,1283788.62339,6889766.52311053,5307244.006638"/>
+  <input type="hidden" name="LAYERS" value="Countries"/>
+  <div>
+    <input type="button" value="Display" onclick="displayit(this.form,'art17wsCountries')"/>
+  </div>
+</form>
+
+
+
+<h2>art17wsLines</h2>
+<form action="#" method="get">
+  <input type="hidden" name="STYLES" value="default"/>
+  <input type="hidden" name="TRANSPARENT" value="TRUE"/>
+  <input type="hidden" name="SRS" value="EPSG:3035"/>
+  <input type="hidden" name="EXCEPTIONS" value="INIMAGE"/>
+  <input type="hidden" name="LAYERS" value="Art_17_lines"/>
+  <input type="hidden" name="HEIGHT" value="400"/>
+  <input type="hidden" name="WIDTH" value="530"/>
+  <input type="hidden" name="BBOX" value="1983283.14634651,1385857.104555,7179120.79160649,5307244.006638"/>
+  <div>
+    <input type="button" value="Display" onclick="displayit(this.form,'art17wsLines')"/>
+  </div>
+</form>
+
+<h2>art17wsOutline</h2>
+<form action="#" method="get">
+  <input type="hidden" name="STYLES" value="default"/>
+  <input type="hidden" name="TRANSPARENT" value="TRUE"/>
+  <input type="hidden" name="SRS" value="EPSG:3035"/>
+  <input type="hidden" name="EXCEPTIONS" value="INIMAGE"/>
+  <input type="hidden" name="LAYERS" value="Europe_BIOGEO_MERGE30Jan"/>
+  <input type="hidden" name="HEIGHT" value="400"/>
+  <input type="hidden" name="WIDTH" value="530"/>
+  <input type="hidden" name="BBOX" value="1983283.14634651,1385857.104555,7179120.79160649,5307244.006638"/>
+  <fieldset><legend>Region (rg)</legend>
+    <label><input type="radio" name="rg" checked="checked" value="'^ALP|^ATL|^BOR|^CON|^MED|^PAN'"/>'^ALP|^ATL|^BOR|^CON|^MED|^PAN'</label>
+    <label><input type="radio" name="rg" value="'^ALP'"/>'^ALP'</label>
+  </fieldset>
+  <div>
+    <input type="button" value="Display" onclick="displayit(this.form,'art17wsOutline')"/>
+  </div>
+</form>
+
+<h2>art17wsBKG (Overview Europe)</h2>
+<form action="#" method="get">
+  <input type="hidden" name="STYLES" value="default"/>
+  <input type="hidden" name="TRANSPARENT" value="TRUE"/>
+  <input type="hidden" name="SRS" value="EPSG:3035"/>
+  <input type="hidden" name="EXCEPTIONS" value="INIMAGE"/>
+  <input type="hidden" name="LAYERS" value="Europe_BIOGEO_MERGE30Jan"/>
+  <input type="hidden" name="HEIGHT" value="400"/>
+  <input type="hidden" name="WIDTH" value="530"/>
+  <input type="hidden" name="BBOX" value="1983283.14634651,1385857.104555,7179120.79160649,5307244.006638"/>
+  <div>
+    <input type="button" value="Display" onclick="displayit(this.form,'art17wsBKG')"/>
+  </div>
+</form>
+
+<h2>art17wsGridRangeS</h2>
+<form action="#" method="get">
+  <input type="hidden" name="STYLES" value=""/>
+  <input type="hidden" name="TRANSPARENT" value="TRUE"/>
+  <input type="hidden" name="SRS" value="EPSG:4326"/>
+  <input type="hidden" name="SRS" value="EPSG:3035"/>
+  <input type="hidden" name="EXCEPTIONS" value="application/vnd.ogc.se_xml"/>
+  <input type="hidden" name="EXCEPTIONS" value="INIMAGE"/>
+  <input type="hidden" name="LAYERS" value="Art_17_Map_Range"/>
+  <input type="hidden" name="HEIGHT" value="377"/>
+  <input type="hidden" name="WIDTH" value="530"/>
+  <input type="hidden" name="BBOX" value="1824789.425072,1385857.104555,7337614.512881,5307244.006638"/>
+  <fieldset><legend>spc</legend>
+    <label><input type="radio" name="spc" checked="checked" value="'Canis lupus'"/>'Canis lupus'</label>
+    <label><input type="radio" name="spc" value="'Lutra lutra'"/>'Lutra lutra'</label>
+  </fieldset>
+  <div>
+    <input type="button" value="Display" onclick="displayit(this.form,'art17wsGridRangeS')"/>
+  </div>
+</form>
+
+
+<h2>art17wsGridRangeSR</h2>
+<form action="#" method="get">
+  <input type="hidden" name="STYLES" value=""/>
+  <input type="hidden" name="SRS" value="EPSG:3035"/>
+  <input type="hidden" name="EXCEPTIONS" value="INIMAGE"/>
+  <input type="hidden" name="LAYERS" value="Art_17_Map_Range_SensitiveSpecies_Removed"/>
+  <input type="hidden" name="HEIGHT" value="377"/>
+  <input type="hidden" name="WIDTH" value="530"/>
+  <input type="hidden" name="BBOX" value="1824789.425072,1385857.104555,7337614.512881,5307244.006638"/>
+  <fieldset><legend>spc</legend>
+    <label><input type="radio" name="spc" checked="checked" value="'Canis lupus'"/>'Canis lupus'</label>
+    <label><input type="radio" name="spc" value="'Lutra lutra'"/>'Lutra lutra'</label>
+  </fieldset>
+  <div>
+    <input type="button" value="Display" onclick="displayit(this.form,'art17wsGridRangeSR')"/>
+  </div>
+</form>
+
+<h2>art17wsGridDistS</h2>
+<form action="#" method="get">
+  <input type="hidden" name="STYLES" value=""/>
+  <input type="hidden" name="TRANSPARENT" value="TRUE"/>
+  <input type="hidden" name="SRS" value="EPSG:4326"/>
+  <input type="hidden" name="SRS" value="EPSG:3035"/>
+  <input type="hidden" name="EXCEPTIONS" value="application/vnd.ogc.se_xml"/>
+  <input type="hidden" name="EXCEPTIONS" value="INIMAGE"/>
+  <input type="hidden" name="LAYERS" value="art_17_Map_Distribution"/>
+  <input type="hidden" name="HEIGHT" value="377"/>
+  <input type="hidden" name="WIDTH" value="530"/>
+  <input type="hidden" name="BBOX" value="1824789.425072,1385857.104555,7337614.512881,5307244.006638"/>
+  <fieldset><legend>spc</legend>
+    <label><input type="radio" name="spc" checked="checked" value="'Canis lupus'"/>'Canis lupus'</label>
+    <label><input type="radio" name="spc" value="'Lutra lutra'"/>'Lutra lutra'</label>
+  </fieldset>
+  <div>
+    <input type="button" value="Display" onclick="displayit(this.form,'art17wsGridDistS')"/>
+  </div>
+</form>
+
+<h2>art17wsGridDistSR (Restricted species)</h2>
+<form action="#" method="get">
+  <input type="hidden" name="STYLES" value=""/>
+  <input type="hidden" name="SRS" value="EPSG:3035"/>
+  <input type="hidden" name="EXCEPTIONS" value="INIMAGE"/>
+  <input type="hidden" name="LAYERS" value="art_17_Map-Distribution_Sensitivespecies_Removed"/>
+  <input type="hidden" name="HEIGHT" value="377"/>
+  <input type="hidden" name="WIDTH" value="530"/>
+  <input type="hidden" name="BBOX" value="1824789.425072,1385857.104555,7337614.512881,5307244.006638"/>
+  <fieldset><legend>spc</legend>
+    <label><input type="radio" name="spc" checked="checked" value="'Canis lupus'"/>'Canis lupus'</label>
+    <label><input type="radio" name="spc" value="'Lutra lutra'"/>'Lutra lutra'</label>
+  </fieldset>
+  <div>
+    <input type="button" value="Display" onclick="displayit(this.form,'art17wsGridDistSR')"/>
+  </div>
+</form>
+
+<h2>art17wsGridDistH</h2>
+<form action="#" method="get">
+  <input type="hidden" name="STYLES" value=""/>
+  <input type="hidden" name="TRANSPARENT" value="TRUE"/>
+  <input type="hidden" name="SRS" value="EPSG:4326"/>
+  <input type="hidden" name="SRS" value="EPSG:3035"/>
+  <input type="hidden" name="EXCEPTIONS" value="application/vnd.ogc.se_xml"/>
+  <input type="hidden" name="EXCEPTIONS" value="INIMAGE"/>
+  <input type="hidden" name="LAYERS" value="art_17_Map_Distribution"/>
+  <input type="hidden" name="HEIGHT" value="377"/>
+  <input type="hidden" name="WIDTH" value="530"/>
+  <input type="hidden" name="BBOX" value="1824789.425072,1385857.104555,7337614.512881,5307244.006638"/>
+  <fieldset><legend>Habitat</legend>
+    <label><input type="radio" name="spc" checked="checked" value="'1130'"/>'1130'</label>
+    <label><input type="radio" name="spc" value="'9110'"/>'9110'</label>
+  </fieldset>
+  <div>
+    <input type="button" value="Display" onclick="displayit(this.form,'art17wsGridDistH')"/>
+  </div>
+</form>
+
+<h2>art17wsLineWork</h2>
+<form action="#" method="get">
+  <input type="hidden" name="STYLES" value=""/>
+  <input type="hidden" name="TRANSPARENT" value="TRUE"/>
+  <input type="hidden" name="SRS" value="EPSG:3035"/>
+  <input type="hidden" name="EXCEPTIONS" value="INIMAGE"/>
+  <input type="hidden" name="LAYERS" value="Art_17_linework"/>
+  <input type="hidden" name="HEIGHT" value="377"/>
+  <input type="hidden" name="WIDTH" value="530"/>
+  <input type="hidden" name="BBOX" value="1824789.425072,1385857.104555,7337614.512881,5307244.006638"/>
+  <div>
+    <input type="button" value="Display" onclick="displayit(this.form,'art17wsLineWork')"/>
+  </div>
+</form>
+
+<h2>art17wsEU25Zones</h2>
+<form action="#" method="get">
+  <input type="hidden" name="STYLES" value=""/>
+  <input type="hidden" name="TRANSPARENT" value="TRUE"/>
+  <input type="hidden" name="SRS" value="EPSG:3035"/>
+  <input type="hidden" name="EXCEPTIONS" value="INIMAGE"/>
+  <input type="hidden" name="LAYERS" value="EU_25_biogeographical_Regions"/>
+  <input type="hidden" name="HEIGHT" value="377"/>
+  <input type="hidden" name="WIDTH" value="530"/>
+  <input type="hidden" name="BBOX" value="1824789.425072,1385857.104555,7337614.512881,5307244.006638"/>
+  <fieldset><legend>Region (rg)</legend>
+    <label><input type="radio" name="rg" checked="checked" value="'^ALP|^ATL|^BOR|^CON|^MED|^PAN'"/>'^ALP|^ATL|^BOR|^CON|^MED|^PAN'</label>
+    <label><input type="radio" name="rg" value="'^ALP'"/>'^ALP'</label>
+  </fieldset>
+  <div>
+    <input type="button" value="Display" onclick="displayit(this.form,'art17wsEU25Zones')"/>
+  </div>
+</form>
+
+<!--
+
+-->
+
+<h2>Boundary query: art17wsQ</h2>
+<form action="/cgi-bin/art17wsQ" method="get">
+  <input type="hidden" name="LAYER" value="Europe_BIOGEO_MERGE30Jan"/>
+  <input type="hidden" name="qitem" value="Country"/>
+  <input type="hidden" name="qlayer" value="Europe_BIOGEO_MERGE30Jan"/>
+  <input type="hidden" name="mode" value="ITEMNQUERY"/>
+  <fieldset><legend>rg</legend>
+    <label><input type="radio" name="rg" checked="checked" value="'^MED'"/>'^MED'</label>
+    <label><input type="radio" name="rg" value="'^ALP'"/>'^ALP'</label>
+  </fieldset>
+  <fieldset><legend>qstring</legend>
+    <label><input type="radio" name="qstring" checked="checked" value="/GR/"/>/GR/</label>
+    <label><input type="radio" name="qstring" value="/AT|ES|FI|R|IT|PL|SE|SI|SK/"/>/AT|ES|FI|R|IT|PL|SE|SI|SK/</label>
+  </fieldset>
+  <div>
+    <input type="submit"/>
+  </div>
+</form>
+
+
+</div> <!-- workarea -->
+<div id="pagefoot">
+<hr/>
+</div>
+</body>
+</html>
