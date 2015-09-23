@@ -6,14 +6,21 @@ Service location: http://art17mapserver.eionet.europa.eu/
 
 ## Deploy
 
-Host prerequisites: [Docker](https://docs.docker.com/installation/)
+Host prerequisites: [Docker](https://docs.docker.com/installation/), [docker-compose] (https://docs.docker.com/compose/install/)
 
-Run the application:
+Install the application:
 
-`docker run  --restart=always -d -p <port_host>:80 -v /media/art17mapviewer_data/art17mapviewer:/var/local --name art17mapviewer eeacms/eea.docker.art17mapviewer`
+```
+# git clone https://github.com/eea/eea.docker.art17mapviewer.git
+# cd eea.docker.art17mapviewer
+# docker-compose up -d
+```
 
-Now the application is running on port 50001 on the host and the files are stored on the host at `/media/art17mapviewer_data/art17mapviewer`.
+Run already installed application:
 
-Visit the `http://localhost:<port_host>` to see the application running.
+```
+# cd eea.docker.art17mapviewer
+# docker-compose up -d
+```
 
-current port_host = 50001
+Now the application is running on port specified in the docker-compose file and the files are stored on the host at /media/art17mapviewer_data
