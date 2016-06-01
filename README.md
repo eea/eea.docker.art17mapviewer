@@ -16,6 +16,12 @@ Install the application:
 # docker-compose up -d
 ```
 
+prepare the data container:
+
+```
+# docker run -d --name art17mapviewer_data eeacms/var_local_data
+```
+
 Run already installed application:
 
 ```
@@ -23,4 +29,17 @@ Run already installed application:
 # docker-compose up -d
 ```
 
-Now the application is running on port specified in the docker-compose file and the files are stored on the host at /media/art17mapviewer_data
+dump application and data from donor host (stop database service first)
+
+```
+# docker run --rm --volumes-from=art17mapviewer_data -v $(pwd):/backup busybox tar cvzfp /backup/art17mapviewer_data.tar.gz /var/local/GIS
+```
+
+
+import application and data to target host
+
+```
+# docker run --rm --volumes-from=art17mapviewer_data -v $(pwd):/backups busybox tar zxvf /backups/art17mapviewer_data.tar.gz
+```
+
+Now the application is running on port specified in the docker-compose file and the files are stored in the art17mapviewer_data data container
