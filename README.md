@@ -25,7 +25,7 @@ Prepare the data container:
 Dump application and data from donor host
 
 ```
-# docker run --rm --volumes-from=art17mapviewer_data -v $(pwd):/backup busybox tar cvzfp /backup/art17mapviewer_data.tar.gz /var/local/GIS
+# docker run --rm --volumes-from=eeadockerart17mapviewer_home_1 -v $(pwd):/backup busybox tar cvzfp /backup/art17mapviewer_data.tar.gz /var/local/GIS
 ```
 
 
