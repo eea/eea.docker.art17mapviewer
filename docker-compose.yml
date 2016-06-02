@@ -1,4 +1,4 @@
-art17mapviewer:
+home:
   restart: always
   build: art17mapviewer
   ports:
