@@ -3,7 +3,9 @@ home:
   build: art17mapviewer
   ports:
     - "50001:80"
-  volumes:
-    - /media/art17mapviewer_data/art17mapviewer:/var/local
+  volumes_from:
+    - art17mapviewer_data
+#  volumes:
+#- /media/art17mapviewer_data/art17mapviewer:/var/local
 #    - /etc/localtime:/etc/localtime:ro # Share timezone data with host
 #      hostname: art17mapviewer
